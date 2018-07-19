@@ -50,9 +50,10 @@ router.get('/all', (req, res) => {
 
       res.json(profiles);
     })
-    .catch(err =>
-      res.status(404).json({ profile: 'There are no any profiles' })
-    );
+    .catch(err => {
+      errors.noprofile = 'There are no profiles';
+      res.status(404).json(errors);
+    });
 });
 
 // @route   GET api/profile/nickname/:nick
@@ -92,9 +93,10 @@ router.get('/user/:user_id', (req, res) => {
 
       res.json(profile);
     })
-    .catch(err =>
-      res.status(404).json({ profile: 'There is no profile for this user' })
-    );
+    .catch(err => {
+      errors.noprofile = 'There is no profile for this user';
+      res.status(404).json(errors);
+    });
 });
 
 // @route   POST api/profile
